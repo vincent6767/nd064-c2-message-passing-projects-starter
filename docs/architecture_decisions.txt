@@ -1,0 +1,17 @@
+Separating Location Service into its own service
+1. There will be large volume of location data, so that means the location API will be hit more than other API. To avoid single point of failure and easier scalability, we will split Location API into its own microservice.
+2. To keep it simple so we could build it around 2 weeks or so, the write and read process in Location Service are in one service. If we have more time, definitely suggests to create separate services for those two.
+
+ 
+
+Location service scalability: Using Kafka to scale.
+1. As Location service will handle a large volume of data, it’s very important to make sure all requests are able to be processed and no data loss during the process. Message queue is perfect technology for this particular use case. I use Kafka as it’s proved able to handle big volume of data and it’s widely maintained. 
+2. Location consumer is a service used to consume message in Kafka and post it into the Postgres database. It’s required as Kafka can’t directly pass the message into other components.
+
+
+Keep messaging strategy between Person and UdaConnect App to RESTful API
+1. I keep message passing between Person and UdaConnect to RESTful API as there is no need to retrieve the data in real time and also it’s not a high traffic requests. The other thing is the we want to keep things simple so we could build it under 2 weeks.
+
+
+Use gRPC as message passing between Location Service and UdaConnect App.
+1.  gRPC is built upon HTTP 2 and follows a client-response communication model. These conditions support bi-drectional communication and streaming communication due to gRPC’s ability to receive multiple requests from several clients and handle those requests simultaneously by constantly streaming information.
