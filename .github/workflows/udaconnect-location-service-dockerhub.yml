@@ -31,8 +31,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./project
-          file: ./project/Dockerfile
+          context: ./modules/location
+          file: ./modules/location/Dockerfile
           platforms: linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
