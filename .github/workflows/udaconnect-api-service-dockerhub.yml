@@ -1,4 +1,4 @@
-name: Udaconnect App Service - Package with Docker
+name: Udaconnect Api Service - Package with Docker
 
 on: push
 
