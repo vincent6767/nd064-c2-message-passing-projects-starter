@@ -20,7 +20,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: vincentbiasa6767/udaconnect-app-service
+          images: vincentbiasa6767/udaconnect-api-service
       -
         name: Login to DockerHub
         uses: docker/login-action@v1
