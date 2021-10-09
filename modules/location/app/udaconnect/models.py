@@ -11,7 +11,6 @@ from sqlalchemy import BigInteger, Column, Date, DateTime, ForeignKey, Integer, 
 from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
 class Person(db.Model):
     __tablename__ = "person"
 
@@ -19,7 +18,6 @@ class Person(db.Model):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     company_name = Column(String, nullable=False)
-
 
 class Location(db.Model):
     __tablename__ = "location"
@@ -56,8 +54,3 @@ class Location(db.Model):
     def latitude(self) -> str:
         coord_text = self.wkt_shape
         return coord_text[coord_text.find("(") + 1 : coord_text.find(" ")]
-
-@dataclass
-class Connection:
-    location: Location
-    person: Person
