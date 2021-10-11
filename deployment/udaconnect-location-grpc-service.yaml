@@ -31,7 +31,7 @@ spec:
         service: udaconnect-location-grpc-service
     spec:
       containers:
-      - image: vincentbiasa6767/udaconnect-location-grpc-service:latest
+      - image: vincentbiasa6767/udaconnect-location-grpc-service:master
         name: udaconnect-location-grpc-service
         imagePullPolicy: Always
         resources:
