@@ -13,5 +13,5 @@ Keep messaging strategy between Person and UdaConnect App to RESTful API
 1. I keep message passing between Person and UdaConnect to RESTful API as there is no need to retrieve the data in real time and also it’s not a high traffic requests. The other thing is the we want to keep things simple so we could build it under 2 weeks.
 
 
-Use gRPC as message passing between Location Service and UdaConnect App.
+Support  gRPC as one of the alternative message passing between Location Service and UdaConnect App.
 1.  gRPC is built upon HTTP 2 and follows a client-response communication model. These conditions support bi-drectional communication and streaming communication due to gRPC’s ability to receive multiple requests from several clients and handle those requests simultaneously by constantly streaming information.

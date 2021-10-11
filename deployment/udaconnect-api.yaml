@@ -31,7 +31,7 @@ spec:
         service: udaconnect-api
     spec:
       containers:
-      - image: vincentbiasa6767/udaconnect-api-service:latest
+      - image: vincentbiasa6767/udaconnect-api-service:master
         name: udaconnect-api
         imagePullPolicy: Always
         env:
