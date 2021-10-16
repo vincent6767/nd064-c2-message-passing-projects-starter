@@ -1,6 +1,7 @@
 import grpc
 import time
 from concurrent import futures
+from kafka import KafkaProducer
 import location_pb2_grpc
 import location_pb2
 
@@ -15,6 +16,15 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
             "latitude": request.latitude,
             "creation_time": request.creation_time
         }
+
+        topic_name = 'location'
+        kafka_server = 'kafka-service:9092'
+        producer = KafkaProducer(bootstrap_servers=kafka_server)
+
+        producer.send(topic_name, request_value)
+
+        print("Sent a message to Kafka")
+
         return location_pb2.LocationMessage(**request_value)
 
 def serve():
