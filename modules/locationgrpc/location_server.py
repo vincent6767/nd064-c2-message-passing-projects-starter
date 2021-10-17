@@ -21,7 +21,7 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         kafka_server = 'kafka-service:9092'
         producer = KafkaProducer(bootstrap_servers=kafka_server)
         print("Created producer")
-        producer.send(topic_name, request_value)
+        producer.send(topic_name, "Hello, World!")
 
         print("Sent a message to Kafka")
 
