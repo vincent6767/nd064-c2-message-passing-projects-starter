@@ -10,5 +10,5 @@ for message in consumer:
                                           message.offset, message.key,
                                           message.value))
     payload = json.loads(message.value.decode('utf-8'))
-    print("Message payload: {}, Person id: {}".format(payload, payload.person_id))
+    print("Message payload: {}, Person id: {}".format(payload, payload['person_id']))
 
