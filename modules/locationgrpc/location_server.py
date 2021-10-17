@@ -17,10 +17,10 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
             "creation_time": request.creation_time
         }
 
-        topic_name = 'location'
+        topic_name = 'people_location'
         kafka_server = 'kafka-service:9092'
         producer = KafkaProducer(bootstrap_servers=kafka_server)
-
+        print("Created producer")
         producer.send(topic_name, request_value)
 
         print("Sent a message to Kafka")
