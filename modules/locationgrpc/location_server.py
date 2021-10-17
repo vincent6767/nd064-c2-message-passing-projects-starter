@@ -22,7 +22,7 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         producer = KafkaProducer(bootstrap_servers=kafka_server)
         print("Created producer")
         try:
-            producer.send(topic_name, "Hello, World!")
+            producer.send(topic_name, b"Hello, World!")
         except Exception as e:
             print("Format: ", e.__format__)
             print("Class: ", e.__class__)
