@@ -2,6 +2,7 @@ import grpc
 import time
 from concurrent import futures
 from kafka import KafkaProducer
+from kafka import KafkaTimeoutError
 import location_pb2_grpc
 import location_pb2
 
@@ -21,7 +22,10 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         kafka_server = 'kafka-service:9092'
         producer = KafkaProducer(bootstrap_servers=kafka_server)
         print("Created producer")
-        producer.send(topic_name, "Hello, World!")
+        try:
+            producer.send(topic_name, "Hello, World!")
+        except Exception as e:
+            print("Oops!", e.__class__, "occurred.")
 
         print("Sent a message to Kafka")
 
