@@ -1,5 +1,6 @@
 import grpc
 import time
+import json
 from concurrent import futures
 from kafka import KafkaProducer
 import location_pb2_grpc
@@ -22,16 +23,9 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         producer = KafkaProducer(bootstrap_servers=kafka_server)
         print("Created producer")
         try:
-            producer.send(topic_name, b"Hello, World!")
+            producer.send(topic_name, json.dumps(request_value).encode('utf-8'))
         except Exception as e:
-            print("Format: ", e.__format__)
-            print("Class: ", e.__class__)
-            print("STR: ", e.__str__)
-            print("Cause: ", e.__cause__)
-            print("Context: ", e.__context__)
-            print("Traceback: ", e.__traceback__)
-
-            print("Oops! Error occurred {}".format(e))
+            print("Oops! Error occurred {}".format(e.__class__))
 
         print("Sent a message to Kafka")
 
