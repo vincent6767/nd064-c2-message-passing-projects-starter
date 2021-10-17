@@ -1,12 +1,6 @@
-FROM python:3.7-alpine
+FROM vincentbiasa6767/python-grpc:latest
 
 WORKDIR .
-
-RUN apk add --no-cache g++ gcc musl-dev linux-headers geos libc-dev postgresql-dev
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-RUN pip install --no-cache-dir --force-reinstall -Iv grpcio==1.41.0
-RUN pip install --no-cache-dir --force-reinstall -Iv grpcio-tools==1.41.0
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
