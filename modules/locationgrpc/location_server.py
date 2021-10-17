@@ -8,8 +8,6 @@ import location_pb2
 
 class LocationService(location_pb2_grpc.LocationServiceServicer):
     def Create(self, request, context):
-        print("Received a message!")
-
         request_value = {
             "id": request.id,
             "person_id": request.person_id,
@@ -21,13 +19,13 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         topic_name = 'people_location'
         kafka_server = 'kafka-service:9092'
         producer = KafkaProducer(bootstrap_servers=kafka_server)
-        print("Created producer")
+       
         try:
             producer.send(topic_name, json.dumps(request_value).encode('utf-8'))
         except Exception as e:
             print("Oops! Error occurred {}".format(e.__class__))
 
-        print("Sent a message to Kafka")
+        print("Successfully sent a message to Kafka")
 
         return location_pb2.LocationMessage(**request_value)
 
