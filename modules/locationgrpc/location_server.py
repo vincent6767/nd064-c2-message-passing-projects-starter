@@ -24,7 +24,7 @@ class LocationService(location_pb2_grpc.LocationServiceServicer):
         try:
             producer.send(topic_name, "Hello, World!")
         except Exception as e:
-            print("Oops! Error occurred", e)
+            print("Oops! Error occurred {}".format(e))
 
         print("Sent a message to Kafka")
 
