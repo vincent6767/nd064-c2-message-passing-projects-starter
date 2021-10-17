@@ -2,7 +2,6 @@ import grpc
 import time
 from concurrent import futures
 from kafka import KafkaProducer
-from kafka import KafkaTimeoutError
 import location_pb2_grpc
 import location_pb2
 
