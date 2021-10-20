@@ -1,0 +1,10 @@
+-- gRPC endpoint -- 
+You can see the location gRPC endpoint in the {project_folder_path}/modules/locationgrpc/location.proto
+
+-- Sample request --
+Pre-requisites: Please make sure you have installed grpcio in your machine.
+
+You can find the sample request in the {project_folder_path}/modules/locationgrpc/location_client.py
+
+Note that the sample request python file sends request to localhost:30003, so please make sure the udaconnect-location-grpc-service available at localhost:3003. 
+Once you have confirmed that, you can run the sample request by simply executing this: `python location_client.py`
