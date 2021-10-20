@@ -26,11 +26,6 @@ except (Exception, psycopg2.Error) as error:
     print("Failed to connect to the PostgreSQL", error)
     print("Application exit")
     exit
-finally:
-    if connection:
-        cursor.close()
-        connection.close()
-        print("PostgresSQL connection is closed")
 
 for message in consumer:
     print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
@@ -53,9 +48,4 @@ for message in consumer:
     except (Exception, psycopg2.Error) as error:
         print("Failed to insert record into location table", error)
         print("Continue listening . . .")
-    finally:
-        if connection:
-            cursor.close()
-            connection.close()
-            print("PostgresSQL connection is closed")
 
