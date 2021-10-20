@@ -1,9 +1,12 @@
 import json, psycopg2, os, sys
+from geoalchemy2.functions import ST_Point
 from kafka import KafkaConsumer
 
 topic = "people_location"
 kafka_server = "kafka-service:9092"
 consumer = KafkaConsumer(topic, bootstrap_servers=kafka_server)
+
+print("Listening to {} on {}".format(topic, kafka_server))
 
 db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
@@ -20,6 +23,7 @@ try:
         database=db_name
     )
     cursor = connection.cursor()
+    print("Connected to database: {}".format(db_name))
 
     for message in consumer:
         print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
@@ -29,7 +33,7 @@ try:
         print("Message payload: {}, Person id: {}".format(payload, payload['person_id'])) # to be removed later.
 
         try: 
-            coordinate = '010100000000ADF9F197925EC0FDA19927D7C64240' # TODO: calculate this based on the longitude and latitude
+            coordinate = ST_Point(payload['latitude'], payload['longitude'])
 
             postgres_insert_query = "INSERT INTO location (id, person_id, coordinate, creation_time) VALUES (%s, %s, %s, %s)"
             record_to_insert = (payload['id'], payload['person_id'], coordinate , payload['creation_time'])
