@@ -38,7 +38,7 @@ try:
 
             connection.commit()
 
-            print(cursor.count, " record inserted successfully into location table")
+            print(cursor.rowcount, " record inserted successfully into location table")
         except (Exception, psycopg2.Error) as error:
             print("Failed to insert record into location table", error)
             print("Rolling back the command . . .")
