@@ -1,12 +1,11 @@
 import json, psycopg2, os, sys
-from geoalchemy2.functions import ST_Point
 from kafka import KafkaConsumer
 
 topic = "people_location"
 kafka_server = "kafka-service:9092"
 consumer = KafkaConsumer(topic, bootstrap_servers=kafka_server)
 
-print("Listening to {} on {}".format(topic, kafka_server))
+print("Listening {} topic on {}".format(topic, kafka_server))
 
 db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
@@ -30,7 +29,6 @@ try:
                                             message.offset, message.key,
                                             message.value))
         payload = json.loads(message.value.decode('utf-8'))
-        print("Message payload: {}, Person id: {}".format(payload, payload['person_id'])) # to be removed later.
 
         try: 
             payload['latitude'] = float(payload['latitude'])
