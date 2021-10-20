@@ -35,7 +35,7 @@ try:
         try: 
             coordinate = ST_Point(payload['latitude'], payload['longitude'])
 
-            postgres_insert_query = "INSERT INTO location (id, person_id, coordinate, creation_time) VALUES (%s, %s, POINT(%s, %s), %s)"
+            postgres_insert_query = "INSERT INTO location (id, person_id, coordinate, creation_time) VALUES (%s, %s, ST_GeomFromText('POINT(%s %s)'), %s)"
             record_to_insert = (payload['id'], payload['person_id'], payload['latitude'], payload['longitude'], payload['creation_time'])
 
             cursor.execute(postgres_insert_query, record_to_insert)
