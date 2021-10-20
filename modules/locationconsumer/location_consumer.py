@@ -25,9 +25,6 @@ try:
     print("Connected to database: {}".format(db_name))
 
     for message in consumer:
-        print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-                                            message.offset, message.key,
-                                            message.value))
         payload = json.loads(message.value.decode('utf-8'))
 
         try: 
