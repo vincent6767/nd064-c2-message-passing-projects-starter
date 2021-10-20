@@ -41,6 +41,8 @@ try:
             print(cursor.count, " record inserted successfully into location table")
         except (Exception, psycopg2.Error) as error:
             print("Failed to insert record into location table", error)
+            print("Rolling back the command . . .")
+            connection.rollback()
             print("Continue listening . . .")
 except KeyboardInterrupt:
     print("Detected signal exit. Exiting application . . .")
