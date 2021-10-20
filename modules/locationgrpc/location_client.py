@@ -8,7 +8,7 @@ Sample implementation of a writer that can be used to write messages to gRPC.
 
 print("Sending sample payload . . .")
 
-host = '127.0.0.1'
+host = 'localhost'
 server_port = 30003
 
 channel = grpc.insecure_channel('{}:{}'.format(host, server_port))
@@ -25,4 +25,4 @@ location = location_pb2.LocationMessage(
 
 response = stub.Create(location)
 
-print("Got a response! {}", response)
+print("Payload sent. The response: {}".format(response))

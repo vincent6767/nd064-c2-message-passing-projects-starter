@@ -1,0 +1,13 @@
+# Specifically created to cut down the build time due to this: https://github.com/grpc/grpc/issues/22815
+FROM python:3.7-alpine
+
+WORKDIR .
+
+RUN apk add --no-cache g++ gcc musl-dev linux-headers geos libc-dev postgresql-dev
+
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+RUN pip install --no-cache-dir --force-reinstall -Iv grpcio==1.41.0
+RUN pip install --no-cache-dir --force-reinstall -Iv grpcio-tools==1.41.0
+
+CMD ["python3"]
